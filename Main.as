@@ -1,8 +1,12 @@
-package
+package TN3_FabulasG
 {
+	import flash.display.Loader;
 	import flash.display.Sprite;
 	import flash.display.MovieClip;
-	import flash.events.Event;
+	import	flash.events.Event;
+	import 	flash.system.ApplicationDomain; 
+    import	flash.system.LoaderContext; 
+	import 	flash.net.URLRequest;
 	
 	/**
 	 * ...
@@ -11,6 +15,7 @@ package
 	public class Main extends Sprite 
 	{
 		private var contenedor:MovieClip;
+		private var _loader:Loader;
 		
 		public function Main() 
 		{
@@ -28,16 +33,35 @@ package
 			contenedor.y = 0;
 			
 			addChild(contenedor);
+			CargarSWF("home");
+		}
+		
+		public function CargarSWF(cual:String) {
+			
+			var _urlRequest:URLRequest = new URLRequest("swfs/"+cual+".swf");
+			_loader = new Loader();
+			trace("Trayendo cuento");
+			
+			var _lc:LoaderContext = new LoaderContext();
+			_lc.applicationDomain = ApplicationDomain.currentDomain;
+			
+			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, cargaTerminada);
+			_loader.load(_urlRequest, _lc);
+			
+			_loader.x = 0;
+			_loader.y = 0;
 			
 		}
 		
-		public function CargarSWF(){
+		private function cargaTerminada(e:Event){
+			trace("carga Terminada");
+			contenedor.addChild(_loader);
 			
+			//_loader.content.addEventListener(EventoCuento.CAMBIO_CUENTO, manejadorCambioCuento);
+			
+			_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, cargaTerminada);
 		}
 		
-		public function CambiarSWF() {
-			
-		}
 	}
 	
 }
