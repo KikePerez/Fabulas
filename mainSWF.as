@@ -12,7 +12,7 @@ package TN3_FabulasG
 	 */
 	public class mainSWF extends Sprite
 	{
-		private	var	manejador	:	Main;
+		public	var	manejador	:	Main;
 		public	var	tipo	:	String;
 		public	var	status	:	Object;
 		private var cont	:	MovieClip;
@@ -90,10 +90,6 @@ package TN3_FabulasG
 		  return instance;
 		}
 		
-	/*	public function set manejador(value:Main):void 
-		{
-			_manejador = value;
-		}*/
 		
 	}
 

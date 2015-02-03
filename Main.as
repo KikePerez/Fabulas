@@ -1,12 +1,13 @@
-package TN3_FabulasG
+﻿package TN3_FabulasG
 {
-	import flash.display.Loader;
-	import flash.display.Sprite;
-	import flash.display.MovieClip;
+	import	flash.display.Loader;
+	import	flash.display.Sprite;
+	import	flash.display.MovieClip;
 	import	flash.events.Event;
 	import 	flash.system.ApplicationDomain; 
     import	flash.system.LoaderContext; 
-	import 	flash.net.URLRequest;
+	import	flash.net.URLRequest;
+	import	TN3_FabulasG.events.EventoCuento;
 	
 	/**
 	 * ...
@@ -56,10 +57,17 @@ package TN3_FabulasG
 		private function cargaTerminada(e:Event){
 			trace("carga Terminada");
 			contenedor.addChild(_loader);
+			var miswf	:	mainSWF = mainSWF(_loader.content);
+			miswf.manejador = this;
 			
-			//_loader.content.addEventListener(EventoCuento.CAMBIO_CUENTO, manejadorCambioCuento);
+			_loader.content.addEventListener(EventoCuento.CAMBIO_CUENTO, manejadorCambioCuento);
 			
 			_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, cargaTerminada);
+		}
+		
+		private function manejadorCambioCuento(e:EventoCuento){
+			trace("Cargando swf respectivo");
+			CargarSWF(e.result as String);
 		}
 		
 	}
