@@ -12,7 +12,7 @@ package TN3_FabulasG
 	 */
 	public class mainSWF extends Sprite
 	{
-		public	var	manejador	:	Main;
+		//public	var	manejador	:	Main;
 		public	var	tipo	:	String;
 		public	var	status	:	Object;
 		private var cont	:	MovieClip;

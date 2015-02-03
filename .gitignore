@@ -17,6 +17,14 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#Flash files
+.swf
+.fla
+
+
+.png
+.apk
+
 # =========================
 # Operating System Files
 # =========================
@@ -45,3 +53,4 @@ Temporary Items
 #Flash files
 .swf
 .fla
+.apk

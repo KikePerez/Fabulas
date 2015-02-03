@@ -17,24 +17,11 @@ package TN3_FabulasG
 			
 		}
 		private function callback(e:MouseEvent) {
-			
-			switch(name){
-				case "_1_1":
-					trace("voy a cuento 1_1");
-					dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO,"cuento"+name, true));
-					
-					break;
-				case "_1_2":
-					break;
-				case "_1_3":
-					break;
-				case "_1_4":
-					break;
-				case "_1_5":
-					break;
-				case "_1_6":
-					break;
-					
+			trace("despachando evento");
+			if(name=="Home"){
+				dispatchEvent(new EventoCuento(EventoCuento.VOLVER_A_HOME,name, true));
+			}else{
+				dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO,name, true));
 			}
 		}
 		

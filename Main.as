@@ -1,4 +1,4 @@
-﻿package TN3_FabulasG
+package TN3_FabulasG
 {
 	import	flash.display.Loader;
 	import	flash.display.Sprite;
@@ -17,6 +17,7 @@
 	{
 		private var contenedor:MovieClip;
 		private var _loader:Loader;
+		private var barra:MovieClip;
 		
 		public function Main() 
 		{
@@ -35,6 +36,10 @@
 			
 			addChild(contenedor);
 			CargarSWF("home");
+			barra = new BarraNavegacion();
+			barra.x = 79;
+			barra.y = 1174;
+			addChild(barra);
 		}
 		
 		public function CargarSWF(cual:String) {
@@ -58,10 +63,10 @@
 			trace("carga Terminada");
 			contenedor.addChild(_loader);
 			var miswf	:	mainSWF = mainSWF(_loader.content);
-			miswf.manejador = this;
+			//miswf.manejador = this;
 			
 			_loader.content.addEventListener(EventoCuento.CAMBIO_CUENTO, manejadorCambioCuento);
-			
+			addEventListener(EventoCuento.VOLVER_A_HOME, manejadorCambioCuento);
 			_loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, cargaTerminada);
 		}
 		

@@ -8,6 +8,8 @@ package TN3_FabulasG.events
 	public class EventoCuento extends Event
 	{
 		public static const CAMBIO_CUENTO:String = "cambio_cuento";
+		public static const VOLVER_A_HOME:String = "volver_a_home";
+
 
 		// this is the object you want to pass through your event.
 		public var result:Object;
