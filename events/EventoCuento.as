@@ -1,4 +1,4 @@
-package TN3_FabulasG.events
+package events
 {
 	import flash.events.Event;
 	/**

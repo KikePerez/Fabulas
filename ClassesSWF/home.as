@@ -1,6 +1,5 @@
-package TN3_FabulasG.ClassesSWF 
+package ClassesSWF 
 {
-	import TN3_FabulasG.mainSWF;
 	
 	/**
 	 * ...

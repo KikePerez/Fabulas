@@ -1,9 +1,9 @@
-package TN3_FabulasG
+package 
 {
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
 	import flash.events.MouseEvent;
-	import TN3_FabulasG.events.EventoCuento;
+	import events.EventoCuento;
 	/**
 	 * ...
 	 * @author Kike Perez

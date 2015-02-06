@@ -1,8 +1,8 @@
-package TN3_FabulasG 
+﻿package  
 {
 	import adobe.utils.CustomActions;
 	import flash.utils.getDefinitionByName;
-	import TN3_FabulasG.ClassesSWF.btns_pasoPagina;
+	import ClassesSWF.btns_pasoPagina;
 	
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -48,6 +48,9 @@ package TN3_FabulasG
 			pag.name = "paginaActual";
 			cont.addChild(pag);
 			
+			for (i = 0; i < cont.numChildren;i++ ) {
+				trace("hijo numero: "+ cont.getChildAt(i));
+			}
 			pag.x = 0;
 			pag.y = 0;
 			
@@ -64,7 +67,9 @@ package TN3_FabulasG
 			
 			pag.name = "paginaActual";
 			cont.addChild(pag);
-			
+			for (i= 0; i < cont.numChildren;i++ ) {
+				trace("hijo numero: "+ cont.getChildAt(i));
+			}
 			pag.x = 0;
 			pag.y = 0;
 		}
@@ -78,16 +83,26 @@ package TN3_FabulasG
 			}
 			pag.name = "paginaActual";
 			cont.addChild(pag);
-			
+			for ( i= 0; i < cont.numChildren;i++ ) {
+				trace("hijo numero: "+ cont.getChildAt(i));
+			}
 			pag.x = 0;
 			pag.y = 0;
 		}
 		
 		public function createInstance(className:String):Object
 		{
-		  var myClass:Class = getDefinitionByName(className) as Class;
-		  var instance:Object = new myClass();
-		  return instance;
+			var myClass:Class = getDefinitionByName(className) as Class;
+			var instance:Object;
+			try{
+			  instance = new myClass();
+			  //return instance;
+			}
+			catch(e:Error){
+				trace("Pagina no existente");
+				return null;
+			}
+			return instance;
 		}
 		
 		

@@ -1,7 +1,7 @@
-package TN3_FabulasG.ClassesSWF 
+﻿package ClassesSWF 
 {
 	import flash.display.MovieClip;
-	import TN3_FabulasG.mainSWF;
+	import mainSWF;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	/**
