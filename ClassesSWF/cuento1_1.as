@@ -12,9 +12,7 @@ package ClassesSWF
 		{
 			super();
 			status = new Object();
-			status.libro = 1;
-			status.cuento = 1;
-			status.pagina = 1;
+			editarStatus(1,1,1);
 			tipo = "cuento";
 			irAPagina(1);
 		}

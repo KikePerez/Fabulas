@@ -47,7 +47,7 @@ package
 			contenedor.y = 0;
 			
 			addChild(contenedor);
-			CargarSWF("Home3");
+			CargarSWF("Home");
 			barra = new BarraNavegacion();
 			barra.x = 79;
 			barra.y = 1174;
@@ -124,7 +124,7 @@ package
 		}
 		
 		private function manejadorCambioCuento(e:EventoCuento){
-			//trace("Cargando swf respectivo");
+			trace("Cargando swf respectivo");
 			CargarSWF(e.result as String);
 		}
 		

@@ -37,9 +37,21 @@
 			
 		}
 		
+		public function editarStatus(lib:int = 0, cuen:int = 0, pag:int = 0){
+			status = new Object();
+			status.libro = lib;
+			status.cuento = cuen;
+			status.pagina = pag;
+		}
+		
 		public function irAPagina(cual:int) {
 			
-			var pag : MovieClip = createInstance(tipo+"_" + status.libro + "_" + status.cuento+"_"+cual.toString()) as MovieClip;
+			try{
+				var pag : MovieClip = createInstance(tipo+"_" + status.libro + "_" + status.cuento+"_"+cual.toString()) as MovieClip;
+			}catch(e:Error){
+				trace("La pagina no existe");
+				return ;
+			}
 			var i:int;
 
 			if(cont.getChildByName("paginaActual")!=null){
@@ -58,7 +70,13 @@
 		
 		public function AvanzarPagina(){
 			status.pagina	+= 1;
-			var pag : MovieClip = createInstance(tipo+"_" + status.libro + "_" +status.cuento+"_"+ status.pagina) as MovieClip;
+			try{
+				var pag : MovieClip = createInstance(tipo+"_" + status.libro + "_" +status.cuento+"_"+ status.pagina) as MovieClip;
+			}catch(e:Error){
+				trace("La pagina no existe");
+				status.pagina -= 1;
+				return;
+			}
 			var i:int;
 			
 			if(cont.getChildByName("paginaActual")!=null){
@@ -75,7 +93,13 @@
 		}
 		public function	DevolverPagina(){
 			status.pagina -= 1;
-			var pag : MovieClip = createInstance(tipo+"_" + status.libro + "_"+ status.cuento+"_" + status.pagina) as MovieClip;
+			try{
+				var pag : MovieClip = createInstance(tipo + "_" + status.libro + "_" + status.cuento + "_" + status.pagina) as MovieClip;
+			}catch(e:Error){
+				trace("La pagina no existe");
+				status.pagina += 1;
+				return;
+			}
 			var i:int;
 
 			if(cont.getChildByName("paginaActual")!=null){
@@ -94,6 +118,7 @@
 		{
 			var myClass:Class = getDefinitionByName(className) as Class;
 			var instance:Object;
+			
 			try{
 			  instance = new myClass();
 			  //return instance;
