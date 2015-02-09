@@ -98,7 +98,12 @@ package
 		
 		private function cargaTerminada(e:Event){
 			//trace("carga Terminada");
-				
+			var LoaderViejo:Loader = contenedor.getChildByName("loaderActual") as Loader;
+			
+			if(LoaderViejo!=null){
+				LoaderViejo.unloadAndStop(true);
+				contenedor.removeChild(LoaderViejo);
+			}
 			// Read SWF bytes into byte array and close file
 			var swfBytes: ByteArray = new ByteArray();
 				this.fileStream.readBytes( swfBytes );
@@ -111,11 +116,13 @@ package
 			// Now you could use this with a Loader instance
 			loader = new Loader();
 			loader.loadBytes( swfBytes, loaderContext );
-			 
+			
 			//this.swf = MovieClip(loader );
 			
-			
+			loader.name = "loaderActual";
 			contenedor.addChild(loader);
+			
+			trace("EXISTEN: "+contenedor.numChildren+" LOADERS");
 			
 			loader.addEventListener(EventoCuento.CAMBIO_CUENTO, this.manejadorCambioCuento);
 			addEventListener(EventoCuento.VOLVER_A_HOME, manejadorCambioCuento);
