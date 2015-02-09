@@ -1,5 +1,6 @@
 package 
 {
+	import events.EventoCuento;
 	import flash.display.MovieClip;
 	import com.greensock.TweenLite;
 	import com.greensock.plugins.AutoAlphaPlugin;
@@ -14,11 +15,12 @@ package
 		
 		private var botones	:	Array;
 		private var anima	:	Boolean;
-		private var status	:	Object;
+		public var status	:	Object;
 		
 		public function PopUpSeleccion() 
 		{
 			TweenPlugin.activate([AutoAlphaPlugin]);
+			botones = new Array();
 			init();
 		}
 		
@@ -30,6 +32,7 @@ package
 				botones.push(getChildByName("_" + i));
 				trace(botones);
 			}
+			addEventListener(EventoCuento.BACK, manejadorBack );
 		}
 		
 		public function aparecer(stat:Object){
@@ -49,11 +52,18 @@ package
 			visible = false;
 		}
 		
-		private function actualizarBotones(){
-			var i : int=0;
-			for (i; i < botones.length; i++ ) {
-				MovieClip(botones[i]).name = "cuento_" + status.cuento + "_" + i;
+		private function actualizarBotones(nuevoStat:Object) {
+			status = nuevoStat;
+			if (status.cuento != 0 ) {
+				var i : int=0;
+				for (i; i < botones.length; i++ ) {
+					MovieClip(botones[i]).name = "cuento_" + status.cuento + "_" + i+1;
+				}	
 			}
+			
+		}
+		private function manejadorBack(e:EventoCuento){
+			desaparecer();
 		}
 		
 	}

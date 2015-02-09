@@ -26,6 +26,7 @@
 		
 		public function mainSWF() 
 		{
+			//reinicializarStatus();
 			cont = new MovieClip();
 			cont.x = 0;
 			cont.y = 0;

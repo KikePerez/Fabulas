@@ -1,5 +1,6 @@
 package events
 {
+	import adobe.utils.CustomActions;
 	import flash.events.Event;
 	/**
 	 * ...
@@ -7,8 +8,10 @@ package events
 	 */
 	public class EventoCuento extends Event
 	{
-		public static const CAMBIO_CUENTO:String = "cambio_cuento";
-		public static const VOLVER_A_HOME:String = "volver_a_home";
+		public static	const	CAMBIO_CUENTO	:	String	=	"cambio_cuento";
+		public static	const	VOLVER_A_HOME	:	String	=	"volver_a_home";
+		public static	const	POPUP	:	String	=	"popup";
+		public static	const	BACK	:	String	=	"back";
 
 
 		// this is the object you want to pass through your event.

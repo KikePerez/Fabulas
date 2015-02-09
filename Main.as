@@ -28,6 +28,7 @@ package
 		private var swf:MovieClip;
 		private var loader:Loader;
 		private var barra:MovieClip;
+		private var popup: PopUpSeleccion;
 		private var fileStream:FileStream;
 		
 		public function Main() 
@@ -52,6 +53,10 @@ package
 			barra.x = 79;
 			barra.y = 1174;
 			addChild(barra);
+			
+			popup = new PopUpSeleccion();
+			addChild(popup);
+			
 		}
 		
 		public function CargarSWF(cual:String) {
@@ -126,6 +131,8 @@ package
 			
 			loader.addEventListener(EventoCuento.CAMBIO_CUENTO, this.manejadorCambioCuento);
 			addEventListener(EventoCuento.VOLVER_A_HOME, manejadorCambioCuento);
+			addEventListener(EventoCuento.POPUP, manejadorPopup);
+			
 			this.fileStream.removeEventListener(Event.COMPLETE, this.cargaTerminada);
 			this.fileStream.close();
 		}
@@ -134,7 +141,10 @@ package
 			trace("Cargando swf respectivo");
 			CargarSWF(e.result as String);
 		}
-		
+		private function manejadorPopup(e:EventoCuento){
+			trace("apareciendo Popup??");
+			popup.aparecer(new Object());
+		}
 	}
 	
 }

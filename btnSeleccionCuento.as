@@ -18,11 +18,26 @@ package
 		}
 		private function callback(e:MouseEvent) {
 			trace("despachando evento");
-			if(name=="Home"){
-				dispatchEvent(new EventoCuento(EventoCuento.VOLVER_A_HOME,name, true));
-			}else{
-				dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO,name, true));
+			switch(name){
+				case "Home":
+					dispatchEvent(new EventoCuento(EventoCuento.VOLVER_A_HOME,name, true));
+					dispatchEvent(new EventoCuento(EventoCuento.BACK,name, true));
+					
+					break;
+				case "popup":
+					dispatchEvent(new EventoCuento(EventoCuento.POPUP, name, true));
+					dispatchEvent(new EventoCuento(EventoCuento.BACK,name, true));
+					
+					break;
+				case "back":
+					dispatchEvent(new EventoCuento(EventoCuento.BACK,name, true));
+					
+					break;
+				default:
+					dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO,name, true));
+					break;
 			}
+			
 		}
 		
 	}
