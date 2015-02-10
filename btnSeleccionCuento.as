@@ -17,7 +17,7 @@ package
 			
 		}
 		private function callback(e:MouseEvent) {
-			trace("despachando evento");
+			//trace("despachando evento");
 			switch(name){
 				case "Home":
 					dispatchEvent(new EventoCuento(EventoCuento.VOLVER_A_HOME,name, true));

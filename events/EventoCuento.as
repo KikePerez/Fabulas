@@ -12,6 +12,8 @@ package events
 		public static	const	VOLVER_A_HOME	:	String	=	"volver_a_home";
 		public static	const	POPUP	:	String	=	"popup";
 		public static	const	BACK	:	String	=	"back";
+		public static	const	CAMBIO_CUENTO_POPUP	:	String	=	"cambio_cuento_popup";
+		public static	const	CAMBIO_STATUS	:	String	=	"cambio_status";
 
 
 		// this is the object you want to pass through your event.

@@ -30,6 +30,8 @@ package
 		private var barra:MovieClip;
 		private var popup: PopUpSeleccion;
 		private var fileStream:FileStream;
+		private	var	statusActual	:	Object;
+		private var swfActual	:	String;
 		
 		public function Main() 
 		{
@@ -42,6 +44,8 @@ package
 			//trace("INICIANDO MAIN!");
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
+			
+			statusActual = new Object();
 			
 			contenedor = new MovieClip();
 			contenedor.x = 0;
@@ -92,6 +96,7 @@ package
 				trace("el archivo no se encuentra");
 			}
 			
+			manejadorStatus(cual);
 
 			//contenedor.addChild(swf);
 			//
@@ -121,15 +126,17 @@ package
 			// Now you could use this with a Loader instance
 			loader = new Loader();
 			loader.loadBytes( swfBytes, loaderContext );
-			
+
 			//this.swf = MovieClip(loader );
 			
 			loader.name = "loaderActual";
 			contenedor.addChild(loader);
 			
-			trace("EXISTEN: "+contenedor.numChildren+" LOADERS");
+			//trace("EXISTEN: "+contenedor.numChildren+" LOADERS");
 			
 			loader.addEventListener(EventoCuento.CAMBIO_CUENTO, this.manejadorCambioCuento);
+			
+			addEventListener(EventoCuento.CAMBIO_CUENTO_POPUP, this.manejadorCambioCuento);
 			addEventListener(EventoCuento.VOLVER_A_HOME, manejadorCambioCuento);
 			addEventListener(EventoCuento.POPUP, manejadorPopup);
 			
@@ -138,12 +145,25 @@ package
 		}
 		
 		private function manejadorCambioCuento(e:EventoCuento){
-			trace("Cargando swf respectivo");
+			//trace("Cargando swf respectivo");
 			CargarSWF(e.result as String);
 		}
 		private function manejadorPopup(e:EventoCuento){
-			trace("apareciendo Popup??");
-			popup.aparecer(new Object());
+			//trace("apareciendo Popup??");
+			popup.aparecer(statusActual);
+		}
+		private function manejadorStatus(cual:String){
+			
+			if(cual.indexOf("cuento_1")>=0||cual.indexOf("libro_1")>=0){
+				statusActual.cuento = 1;
+				trace("EL LIBRO_1");
+			}
+			else if(cual.indexOf("cuento_2")>=0||cual.indexOf("libro_2")>=0){
+				statusActual.cuento = 2;
+				trace("EL LIBRO_2");
+				
+			}
+			
 		}
 	}
 	

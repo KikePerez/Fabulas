@@ -30,15 +30,16 @@ package
 			var i : int=1;
 			for (i; i < 7;i++ ) {
 				botones.push(getChildByName("_" + i));
-				trace(botones);
+				//trace(botones);
 			}
 			addEventListener(EventoCuento.BACK, manejadorBack );
 		}
 		
-		public function aparecer(stat:Object){
+		public function aparecer(stat:Object) {
 			visible = true;
 			alpha = 0;
 			status = stat;
+			actualizarBotones(status);
 			TweenLite.to(this, 0.5, { autoAlpha:1} );
 		}
 		
@@ -53,11 +54,12 @@ package
 		}
 		
 		private function actualizarBotones(nuevoStat:Object) {
+			trace("actualizando botones");
 			status = nuevoStat;
 			if (status.cuento != 0 ) {
 				var i : int=0;
 				for (i; i < botones.length; i++ ) {
-					MovieClip(botones[i]).name = "cuento_" + status.cuento + "_" + i+1;
+					btnCuentoPopup(botones[i]).cual = "cuento_" + status.cuento;
 				}	
 			}
 			

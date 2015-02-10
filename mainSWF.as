@@ -1,6 +1,7 @@
 ﻿package  
 {
 	import adobe.utils.CustomActions;
+	import events.EventoCuento;
 	import flash.utils.getDefinitionByName;
 	import ClassesSWF.btns_pasoPagina;
 	import com.greensock.TweenLite;
@@ -34,14 +35,15 @@
 			botonesPaginas = new btns_pasoPagina(this as mainSWF);
 			addChild(botonesPaginas);
 			TweenPlugin.activate([AutoAlphaPlugin]);
-		}
+			}
 		
 		public function reinicializarStatus(){
 			status = new Object();
 			status.libro = 0;
 			status.cuento = 0;
 			status.pagina = 1;
-			
+			//dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_STATUS, status, true));
+
 		}
 		
 		public function editarStatus(lib:int = 0, cuen:int = 0, pag:int = 0){
@@ -49,6 +51,8 @@
 			status.libro = lib;
 			status.cuento = cuen;
 			status.pagina = pag;
+			//dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_STATUS, status, true));
+
 		}
 		
 		public function irAPagina(cual:int) {
