@@ -149,11 +149,11 @@ package
 			
 			if(cual.indexOf("cuento_1")>=0||cual.indexOf("libro_1")>=0){
 				statusActual.cuento = 1;
-				trace("EL LIBRO_1");
+				//trace("EL LIBRO_1");
 			}
 			else if(cual.indexOf("cuento_2")>=0||cual.indexOf("libro_2")>=0){
 				statusActual.cuento = 2;
-				trace("EL LIBRO_2");
+				//trace("EL LIBRO_2");
 				
 			}
 			

@@ -99,8 +99,9 @@
 						status.pagina -= 1;
 						if (tipo == "cuento") {
 							var actual:String = tipo + "_" + status.libro + "_" +status.cuento;
-							if(actual=="cuento_1_6"){
-								dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO, "creditos"+"_" + status.libro , true));
+							if (actual == "cuento_1_6") {
+								trace("PASO A CREDITOS");
+								dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO, "creditos" , true));
 							}
 							dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO, tipo+"_" + status.libro + "_" + (status.cuento+1) , true));
 						}else if(tipo=="libro"){

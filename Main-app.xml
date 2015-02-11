@@ -19,7 +19,7 @@
 <application xmlns="http://ns.adobe.com/air/application/3.6">
   <id>GFEarth</id>
   <versionNumber>1.0.0</versionNumber>
-  <versionLabel></versionLabel>
+  <versionLabel/>
   <filename>Gunter Fables Earth</filename>
   <description/>
   <name>Gunter Fables Earth</name>
