@@ -17,12 +17,12 @@
 	</name>
 -->
 <application xmlns="http://ns.adobe.com/air/application/3.6">
-  <id>Main</id>
+  <id>GFEarth</id>
   <versionNumber>1.0.0</versionNumber>
-  <versionLabel/>
-  <filename>Main</filename>
+  <versionLabel></versionLabel>
+  <filename>Gunter Fables Earth</filename>
   <description/>
-  <name>Main</name>
+  <name>Gunter Fables Earth</name>
   <copyright/>
   <initialWindow>
     <content>Main.swf</content>

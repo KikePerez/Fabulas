@@ -22,6 +22,8 @@
 		private	var cont	:	MovieClip;
 		private	var	anima	:	Boolean;
 		
+		private var paginaActual: MovieClip;
+		
 		
 		private var botonesPaginas	:	btns_pasoPagina;
 		
@@ -58,7 +60,7 @@
 		public function irAPagina(cual:int) {
 			
 			try{
-				var pag : MovieClip = createInstance(tipo+"_" + status.libro + "_" + status.cuento+"_"+cual.toString()) as MovieClip;
+				/*var pag : MovieClip */ paginaActual= createInstance(tipo+"_" + status.libro + "_" + status.cuento+"_"+cual.toString()) as MovieClip;
 			}catch(e:Error){
 				//trace("La pagina no existe");
 				return ;
@@ -70,77 +72,110 @@
 				//cont.removeChild(cont.getChildByName("paginaActual"));
 			}
 			
-			pag.name = "paginaActual";
-			cont.addChild(pag); 
-			aparecerMC(pag);
-			pag.x = 0;
-			pag.y = 0;
+			paginaActual.name = "paginaActual";
+			cont.addChild(paginaActual); 
+			aparecerMC(paginaActual);
+	
+			paginaActual.x = 1536;
+			paginaActual.y = 0;
 			
 		}
 		
 		
 			
 		public function AvanzarPagina(){
-			if(!anima){
-				status.pagina	+= 1;
-				try{
-					var pag : MovieClip = createInstance(tipo+"_" + status.libro + "_" +status.cuento+"_"+ status.pagina) as MovieClip;
-				}catch(e:Error){
-					trace("La pagina no existe");
-					status.pagina -= 1;
-					return;
-				}
+			if (!anima) {
 				
-				if(cont.numChildren>1){
-					var i:int = 1;
-					for (i; i < cont.numChildren; i++ ) {
-						TweenLite.killTweensOf(cont.getChildAt(i));					
-						cont.removeChildAt(i);
+				
+				if(paginaActual.x==1536){
+					paginaActual.x = 0;
+				}else {
+					status.pagina	+= 1;
+					try {
+						/*var pag : MovieClip*/paginaActual = createInstance(tipo+"_" + status.libro + "_" +status.cuento+"_"+ status.pagina) as MovieClip;
+					}catch(e:Error){
+						trace("La pagina no existe");
+						
+						status.pagina -= 1;
+						if (tipo == "cuento") {
+							var actual:String = tipo + "_" + status.libro + "_" +status.cuento;
+							if(actual=="cuento_1_6"){
+								dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO, "creditos"+"_" + status.libro , true));
+							}
+							dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO, tipo+"_" + status.libro + "_" + (status.cuento+1) , true));
+						}else if(tipo=="libro"){
+							dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO, "cuento_" + status.libro + "_" + 1 , true));
+						}
+						return;
 					}
-				}else{
-					desaparecerMC(cont.getChildByName("paginaActual")as MovieClip);
+					
+					if(cont.numChildren>1){
+						var i:int = 1;
+						for (i; i < cont.numChildren; i++ ) {
+							TweenLite.killTweensOf(cont.getChildAt(i));					
+							cont.removeChildAt(i);
+						}
+					}else{
+						desaparecerMC(cont.getChildByName("paginaActual")as MovieClip);
+					}
+					
+					paginaActual.name = "paginaActual";
+					cont.addChild(paginaActual); 
+					aparecerMC(paginaActual);
+					paginaActual.x = 1536;
+					paginaActual.y = 0;
 				}
 				
-				pag.name = "paginaActual";
-				cont.addChild(pag); 
-				aparecerMC(pag);
 				
-				
-				pag.x = 0;
-				pag.y = 0;
 			}
 			
 		}
 		
 		
 		public function	DevolverPagina(){
-			if(!anima){
-				status.pagina	-= 1;
-				try{
-					var pag : MovieClip = createInstance(tipo+"_" + status.libro + "_" +status.cuento+"_"+ status.pagina) as MovieClip;
-				}catch(e:Error){
-					trace("La pagina no existe");
-					status.pagina -= 1;
-					return;
-				}
+			if (!anima) {
 				
-				if(cont.numChildren>1){
-					var i:int = 1;
-					for (i; i < cont.numChildren; i++ ) {
-						TweenLite.killTweensOf(cont.getChildAt(i));					
-						cont.removeChildAt(i);
+				
+				if(paginaActual.x==0){
+					paginaActual.x = 1536;
+				}else {
+					status.pagina	-= 1;
+					try {
+						/*var pag : MovieClip*/paginaActual = createInstance(tipo+"_" + status.libro + "_" +status.cuento+"_"+ status.pagina) as MovieClip;
+					}catch(e:Error){
+						trace("La pagina no existe");
+						
+						status.pagina += 1;
+						if (tipo == "cuento") {
+							var actual:String = tipo + "_" + status.libro + "_" +status.cuento;
+							if(actual=="cuento_1_6"){
+								dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO, "creditos"+"_" + status.libro , true));
+							}
+							dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO, tipo+"_" + status.libro + "_" + (status.cuento+1) , true));
+						}else if(tipo=="libro"){
+							dispatchEvent(new EventoCuento(EventoCuento.CAMBIO_CUENTO, "cuento_" + status.libro + "_" + 1 , true));
+						}
+						return;
 					}
-				}else{
-					desaparecerMC(cont.getChildByName("paginaActual")as MovieClip);
+					
+					if(cont.numChildren>1){
+						var i:int = 1;
+						for (i; i < cont.numChildren; i++ ) {
+							TweenLite.killTweensOf(cont.getChildAt(i));					
+							cont.removeChildAt(i);
+						}
+					}else{
+						desaparecerMC(cont.getChildByName("paginaActual")as MovieClip);
+					}
+					
+					paginaActual.name = "paginaActual";
+					cont.addChild(paginaActual); 
+					aparecerMC(paginaActual);
+					paginaActual.x = 0;
+					paginaActual.y = 0;
 				}
 				
-				pag.name = "paginaActual";
-				cont.addChild(pag); 
-				aparecerMC(pag);
 				
-				
-				pag.x = 0;
-				pag.y = 0;
 			}
 		}
 		

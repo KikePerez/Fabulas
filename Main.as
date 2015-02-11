@@ -52,11 +52,14 @@ package
 			contenedor.y = 0;
 			
 			addChild(contenedor);
-			CargarSWF("Home");
 			barra = new BarraNavegacion();
 			barra.x = 79;
 			barra.y = 1174;
 			addChild(barra);
+			barra.visible = false;
+			
+			CargarSWF("libro_1");
+
 			
 			popup = new PopUpSeleccion();
 			addChild(popup);
@@ -64,23 +67,13 @@ package
 		}
 		
 		public function CargarSWF(cual:String) {
-			
-		/*	var _urlRequest:URLRequest = new URLRequest(cual+".swf");
-			_loader = new Loader();
-			trace("Trayendo cuento");
-			
-			var _lc:LoaderContext = new LoaderContext();
-			_lc.applicationDomain = ApplicationDomain.currentDomain;
-			
-			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, cargaTerminada);
-			
-			_loader.load(_urlRequest, _lc);
-			
-			_loader.x = 0;
-			_loader.y = 0;*/
-			
-			
-			//var file:File = File.applicationDirectory.resolvePath( "/data/data/" + "swfs/" + cual + ".swf"  );
+			trace(cual);
+			if (cual == "Home") {
+				trace("cual == Home ");
+				barra.visible = false;
+			}else{
+				barra.visible = true;
+			}
 			
 			var file:File = File.applicationDirectory;
 			file = file.resolvePath("swfs/"+cual+".swf"); 
